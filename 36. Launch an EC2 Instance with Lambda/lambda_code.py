@@ -15,7 +15,7 @@ def lambda_handler(event, context):
 
     try:
 
-        response = ec2_client.run_instances(ImageId='ami-0b69ea66ff7391e80',
+        response = ec2_client.run_instances(ImageId='ami-seriescode',
 
                                             InstanceType='t2.micro',
 
