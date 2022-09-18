@@ -7,7 +7,7 @@
 					"S3Bucket": "bucket_name",
 					"S3Key": "lambda_function.zip"
 				},
-				"Role": { "Fn::Sub": "arn:aws:iam::251723120282:role/whizlabs_cloudformation_lambda_role_72527413"},
+				"Role": { "Fn::Sub": "arn:iam_arn"},
                 "Timeout": 60,
                 "Handler": "lambda_function.lambda_handler",
                 "Runtime": "python3.7",
