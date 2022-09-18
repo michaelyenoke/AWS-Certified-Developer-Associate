@@ -4,14 +4,14 @@ Resources:
  MyWebserverstack1:
    Type: AWS::CloudFormation::Stack
    Properties:
-       TemplateURL: https://whizlabs28607810.s3.amazonaws.com/Nested_ASG.yaml
+       TemplateURL: https://s3_bucket_url_nested_asg.yaml
        TimeoutInMinutes: '5'
        Parameters:
          LoadBalancerName: !GetAtt 'Elbstack.Outputs.LoadBalancerName'
  Elbstack:
    Type: AWS::CloudFormation::Stack
    Properties:
-      TemplateURL: https://whizlabs28607810.s3.amazonaws.com/Nested_LB.yaml
+      TemplateURL: https://s3_bucket_url_nested_lb.yaml
 Outputs:
   StackRef:
     Value: !Ref Elbstack 
