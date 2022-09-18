@@ -4,4 +4,4 @@ import json
 from botocore.exceptions import ClientError
 def lambda_handler(event, context):
     client = boto3.client('s3')
-    response = client.create_bucket(Bucket='k6-bucket')
+    response = client.create_bucket(Bucket='bucket_name')
