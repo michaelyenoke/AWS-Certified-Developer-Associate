@@ -1,0 +1,17 @@
+#!/bin/bash
+sudo su
+yum update -y
+yum install httpd -y
+touch /var/www/html/index.html
+echo “REQUEST SERVED FROM INSTANCE2” >> /var/www/html/index.html
+chmod 777 /var/www/html/index.html
+mkdir -p /var/www/html/work
+touch /var/www/html/work/test.html
+echo “REQUEST SERVED FROM WORK PATH OF INSTANCE2” >> /var/www/html/work/test.html
+chmod 777 /var/www/html/work/test.html
+mkdir -p /var/www/html/images
+touch /var/www/html/images/test.html
+echo “REQUEST SERVED FROM IMAGES PATH OF INSTANCE2” >> /var/www/html/images/test.html
+chmod 777 /var/www/html/images/test.html
+systemctl start httpd
+systemctl enable httpd
