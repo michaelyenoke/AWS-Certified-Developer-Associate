@@ -1,1 +1,4 @@
 aws elbv2 create-load-balancer --name whizlabs-LB --subnets subnet-b72471e8 subnet-dfbcebfe --security-groups sg-0a64e7482127b1f9d
+
+
+
