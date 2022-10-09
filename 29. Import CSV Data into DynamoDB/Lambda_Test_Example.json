@@ -1,27 +1,38 @@
-import boto3
-s3_client = boto3.client("s3")
-dynamodb = boto3.resource("dynamodb")
-
-table = dynamodb.Table("whizlabs_students_table")
-
-def lambda_handler(event, context):
-    bucket_name = event['Records'][0]['s3']['bucket']['name']
-    s3_file_name = event['Records'][0]['s3']['object']['key']
-    resp = s3_client.get_object(Bucket=bucket_name,Key=s3_file_name)
-    data = resp['Body'].read().decode("utf-8")
-    Students = data.split("\n")
-    #print(students)
-    for stud in Students:
-        print(stud)
-        stud_data = stud.split(",")
-        # add to dynamodb
-        try:
-            table.put_item(
-                Item = {
-                    "id"        : stud_data[0],
-                    "name"      : stud_data[1],
-                    "Subject"   : stud_data[2]
-                }
-            )
-        except Exception as e:
-            print("End of file")
+{
+  "Records": [
+    {
+      "eventVersion": "2.0",
+      "eventSource": "aws:s3",
+      "awsRegion": "us-east-1",
+      "eventTime": "1970-01-01T00:00:00.000Z",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "EXAMPLE"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "127.0.0.1"
+      },
+      "responseElements": {
+        "x-amz-request-id": "EXAMPLE123456789",
+        "x-amz-id-2": "EXAMPLE123/5678abcdefghijklambdaisawesome/mnopqrstuvwxyzABCDEFGH"
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "testConfigRule",
+        "bucket": {
+          "name": "csvs3dynamo2",
+          "ownerIdentity": {
+            "principalId": "EXAMPLE"
+          },
+          "arn": "arn:aws:s3:::csvs3dynamo2"
+        },
+        "object": {
+          "key": "students.csv",
+          "size": 1024,
+          "eTag": "0123456789abcdef0123456789abcdef",
+          "sequencer": "0A1B2C3D4E5F678901"
+        }
+      }
+    }
+  ]
+}
